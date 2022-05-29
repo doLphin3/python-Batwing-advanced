@@ -164,7 +164,7 @@ class Human:
 #===================CENTAUR CLASS====================#
 
 
-class Centaur(Animals, Human):
+class Centaur(Human, Animals):
     def __init__(self, name, eat, sleep, study, work):
         Human.__init__(self, eat, sleep, study, work)
         Animals.__init__(self, name, eat, sleep)
@@ -173,7 +173,7 @@ class Centaur(Animals, Human):
         print("Did anybody see my sneakers? Lost them again!")
 
 
-centaur = Centaur("Alberto", "pizza", 8, "Python", "taxi driver")
+centaur = Centaur("Alberto", "Pizza", 8, "Python", "taxi driver")
 
 centaur.info()
 centaur.eating()
