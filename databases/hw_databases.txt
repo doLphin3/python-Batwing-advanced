@@ -1,0 +1,167 @@
+CREATE TABLE levels (id INT AUTO_INCREMENT PRIMARY KEY, number INT NOT NULL);
+
+INSERT INTO levels (number) VALUES (8), (9), (10), (11);
+
+SELECT * FROM levels;
++----+--------+
+| id | number |
++----+--------+
+|  1 |      8 |
+|  2 |      9 |
+|  3 |     10 |
+|  4 |     11 |
++----+--------+
+
+CREATE TABLE student_levels (id INT AUTO_INCREMENT PRIMARY KEY, student_id INT NOT NULL, level_id INT);
+
+INSERT INTO students (first_name, last_name) VALUES ("James", "Hetfield"), ("Alice", "Cooper"), ("Lemmy", "Kilmister"), ("Dimebag", "Darrell"), ("Travis", "Barker"), ("Dave", "Grohl");
+
+SELECT * FROM students;
++----+------------+-----------+
+| id | first_name | last_name |
++----+------------+-----------+
+|  1 | Ivan       | Pidhaynuy |
+|  2 | Petro      | Pravdoryb |
+|  3 | Yuriy      | Skobylko  |
+|  4 | Liubomyr   | Luzhnyi   |
+|  5 | James      | Hetfield  |
+|  6 | Alice      | Cooper    |
+|  7 | Lemmy      | Kilmister |
+|  8 | Dimebag    | Darrell   |
+|  9 | Travis     | Barker    |
+| 10 | Dave       | Grohl     |
++----+------------+-----------+
+
+INSERT INTO students_lessons (student_id, lesson_id) VALUES (5, 2), (6, 1), (6, 4), (7, 3), (8, 1), (8, 3), (9, 4), (9, 3), (10, 2);
+
+SELECT * FROM students_lessons;
++----+------------+-----------+
+| id | student_id | lesson_id |
++----+------------+-----------+
+|  1 |          2 |         1 |
+|  2 |          3 |         1 |
+|  3 |          4 |         1 |
+|  4 |          3 |         2 |
+|  5 |          2 |         2 |
+|  6 |          1 |         3 |
+|  7 |          4 |         3 |
+|  8 |          1 |         4 |
+|  9 |          5 |         2 |
+| 10 |          6 |         1 |
+| 11 |          6 |         4 |
+| 12 |          7 |         3 |
+| 13 |          8 |         1 |
+| 14 |          8 |         3 |
+| 15 |          9 |         4 |
+| 16 |          9 |         3 |
+| 17 |         10 |         2 |
++----+------------+-----------+
+
+INSERT INTO student_levels (student_id, level_id) VALUES (1, 2), (2, 4), (3, 2), (4, 1), (5, 4), (6, 1), (7, 3), (8, 2), (9, 4), (10, 3);
+
+SELECT * FROM student_levels;
++----+------------+----------+
+| id | student_id | level_id |
++----+------------+----------+
+|  1 |          1 |        2 |
+|  2 |          2 |        4 |
+|  3 |          3 |        2 |
+|  4 |          4 |        1 |
+|  5 |          5 |        4 |
+|  6 |          6 |        1 |
+|  7 |          7 |        3 |
+|  8 |          8 |        2 |
+|  9 |          9 |        4 |
+| 10 |         10 |        3 |
++----+------------+----------+
+
+SELECT s.first_name AS Name, s.last_name AS Surname, lvl.number AS Level, l.name AS Lesson, t.name AS Teacher, r.name AS Room FROM students s INNER JOIN student_levels slvl ON s.id = slvl.student_id INNER JOIN levels lvl ON slvl.level_id = lvl.id INNER JOIN students_lessons sl ON
+s.id = sl.student_id INNER JOIN lessons l ON sl.lesson_id = l.id INNER JOIN teachers t ON t.lesson_id = l.id INNER JOIN rooms_lessons rl ON rl.lesson_id = l.id INNER JOIN rooms r ON r.id = rl.room_id;
++----------+-----------+-------+---------+----------------------+------------------+
+| Name     | Surname   | Level | Lesson  | Teacher              | Room             |
++----------+-----------+-------+---------+----------------------+------------------+
+| Ivan     | Pidhaynuy |     9 | IT      | Yulia Liubomyrivna   | Yellow Submarine |
+| Ivan     | Pidhaynuy |     9 | IT      | Yulia Liubomyrivna   | Rocket           |
+| Petro    | Pravdoryb |    11 | Math    | Margaryta Ivanivna   | Yellow Submarine |
+| Petro    | Pravdoryb |    11 | Math    | Margaryta Ivanivna   | Rocket           |
+| Petro    | Pravdoryb |    11 | Biology | Roskolana Stepanivna | Yellow Submarine |
+| Petro    | Pravdoryb |    11 | Biology | Kateryna Yuriivna    | Yellow Submarine |
+| Yuriy    | Skobylko  |     9 | Math    | Margaryta Ivanivna   | Yellow Submarine |
+| Yuriy    | Skobylko  |     9 | Math    | Margaryta Ivanivna   | Rocket           |
+| Yuriy    | Skobylko  |     9 | Biology | Roskolana Stepanivna | Yellow Submarine |
+| Yuriy    | Skobylko  |     9 | Biology | Kateryna Yuriivna    | Yellow Submarine |
+| Liubomyr | Luzhnyi   |     8 | IT      | Yulia Liubomyrivna   | Yellow Submarine |
+| Liubomyr | Luzhnyi   |     8 | IT      | Yulia Liubomyrivna   | Rocket           |
+| Liubomyr | Luzhnyi   |     8 | Biology | Roskolana Stepanivna | Yellow Submarine |
+| Liubomyr | Luzhnyi   |     8 | Biology | Kateryna Yuriivna    | Yellow Submarine |
+| James    | Hetfield  |    11 | Math    | Margaryta Ivanivna   | Yellow Submarine |
+| James    | Hetfield  |    11 | Math    | Margaryta Ivanivna   | Rocket           |
+| Alice    | Cooper    |     8 | Biology | Roskolana Stepanivna | Yellow Submarine |
+| Alice    | Cooper    |     8 | Biology | Kateryna Yuriivna    | Yellow Submarine |
+| Lemmy    | Kilmister |    10 | IT      | Yulia Liubomyrivna   | Yellow Submarine |
+| Lemmy    | Kilmister |    10 | IT      | Yulia Liubomyrivna   | Rocket           |
+| Dimebag  | Darrell   |     9 | IT      | Yulia Liubomyrivna   | Yellow Submarine |
+| Dimebag  | Darrell   |     9 | IT      | Yulia Liubomyrivna   | Rocket           |
+| Dimebag  | Darrell   |     9 | Biology | Roskolana Stepanivna | Yellow Submarine |
+| Dimebag  | Darrell   |     9 | Biology | Kateryna Yuriivna    | Yellow Submarine |
+| Travis   | Barker    |    11 | IT      | Yulia Liubomyrivna   | Yellow Submarine |
+| Travis   | Barker    |    11 | IT      | Yulia Liubomyrivna   | Rocket           |
+| Dave     | Grohl     |    10 | Math    | Margaryta Ivanivna   | Yellow Submarine |
+| Dave     | Grohl     |    10 | Math    | Margaryta Ivanivna   | Rocket           |
++----------+-----------+-------+---------+----------------------+------------------+
+
+
+
+
+
+
+
+
+Query to show relation between student and teachers:
+
+SELECT s.first_name, s.last_name, t.name AS teacher FROM students s INNER JOIN students_lessons sl ON sl.student_id = s.id INNER JOIN lessons l ON l.id = sl.lesson_id INNER JOIN teachers t ON t.lesson_id = l.id;
++------------+-----------+----------------------+
+| first_name | last_name | teacher              |
++------------+-----------+----------------------+
+| Petro      | Pravdoryb | Kateryna Yuriivna    |
+| Petro      | Pravdoryb | Roskolana Stepanivna |
+| Yuriy      | Skobylko  | Kateryna Yuriivna    |
+| Yuriy      | Skobylko  | Roskolana Stepanivna |
+| Liubomyr   | Luzhnyi   | Kateryna Yuriivna    |
+| Liubomyr   | Luzhnyi   | Roskolana Stepanivna |
+| Yuriy      | Skobylko  | Margaryta Ivanivna   |
+| Petro      | Pravdoryb | Margaryta Ivanivna   |
+| Ivan       | Pidhaynuy | Yulia Liubomyrivna   |
+| Liubomyr   | Luzhnyi   | Yulia Liubomyrivna   |
+| James      | Hetfield  | Margaryta Ivanivna   |
+| Alice      | Cooper    | Kateryna Yuriivna    |
+| Alice      | Cooper    | Roskolana Stepanivna |
+| Lemmy      | Kilmister | Yulia Liubomyrivna   |
+| Dimebag    | Darrell   | Kateryna Yuriivna    |
+| Dimebag    | Darrell   | Roskolana Stepanivna |
+| Dimebag    | Darrell   | Yulia Liubomyrivna   |
+| Travis     | Barker    | Yulia Liubomyrivna   |
+| Dave       | Grohl     | Margaryta Ivanivna   |
++------------+-----------+----------------------+
+
+
+Query to show students and thier levels:
+
+SELECT s.first_name, s.last_name, l.number AS level FROM students s INNER JOIN student_le
+vels sl ON sl.student_id = s.id INNER JOIN levels l ON l.id = sl.level_id;
++------------+-----------+-------+
+| first_name | last_name | level |
++------------+-----------+-------+
+| Ivan       | Pidhaynuy |     9 |
+| Petro      | Pravdoryb |    11 |
+| Yuriy      | Skobylko  |     9 |
+| Liubomyr   | Luzhnyi   |     8 |
+| James      | Hetfield  |    11 |
+| Alice      | Cooper    |     8 |
+| Lemmy      | Kilmister |    10 |
+| Dimebag    | Darrell   |     9 |
+| Travis     | Barker    |    11 |
+| Dave       | Grohl     |    10 |
++------------+-----------+-------+
+
+
