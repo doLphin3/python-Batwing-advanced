@@ -1,0 +1,338 @@
+docker build . -t homework_docker
+
+docker images
+REPOSITORY        TAG       IMAGE ID       CREATED          SIZE
+homework_docker   latest    1383cbf57ba6   10 minutes ago   459MB
+ubuntu            latest    27941809078c   4 weeks ago      77.8MB
+ubuntu            20.04     20fffa419e3a   4 weeks ago      72.8MB
+hello-world       latest    feb5d9fea6a5   9 months ago     13.3kB
+
+docker run homework_docker
+
+docker ps
+CONTAINER ID   IMAGE             COMMAND                  CREATED       STATUS       PORTS     NAMES
+8a2e20d8ea49   homework_docker   "/bin/sh -c 'FLASK_A…"   2 hours ago   Up 2 hours             bold_poincare
+
+docker stop 8a
+
+docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+docker run 1383
+ * Serving Flask app '/app/file_test.py' (lazy loading)
+
+docker ps
+CONTAINER ID   IMAGE     COMMAND                  CREATED         STATUS         PORTS     NAMES
+ee4fe44c39c9   1383      "/bin/sh -c 'FLASK_A…"   2 minutes ago   Up 2 minutes             sleepy_bartik
+
+docker kill sleepy_bartik
+sleepy_bartik
+
+docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+docker run -d 1383
+2b00019cc840e89129344408098531b12c60dc5119d25cfd89bf75f732c991b4
+
+docker ps
+CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS     NAMES
+2b00019cc840   1383      "/bin/sh -c 'FLASK_A…"   20 seconds ago   Up 19 seconds             keen_brown
+
+docker kill 2b
+2b
+
+docker run -it ubuntu bash
+root@1bad3b024161:/# ll
+total 56
+drwxr-xr-x   1 root root 4096 Jul  5 21:26 ./
+drwxr-xr-x   1 root root 4096 Jul  5 21:26 ../
+-rwxr-xr-x   1 root root    0 Jul  5 21:26 .dockerenv*
+lrwxrwxrwx   1 root root    7 May 31 15:42 bin -> usr/bin/
+drwxr-xr-x   2 root root 4096 Apr 18 10:28 boot/
+drwxr-xr-x   5 root root  360 Jul  5 21:26 dev/
+drwxr-xr-x   1 root root 4096 Jul  5 21:26 etc/
+drwxr-xr-x   2 root root 4096 Apr 18 10:28 home/
+lrwxrwxrwx   1 root root    7 May 31 15:42 lib -> usr/lib/
+lrwxrwxrwx   1 root root    9 May 31 15:42 lib32 -> usr/lib32/
+lrwxrwxrwx   1 root root    9 May 31 15:42 lib64 -> usr/lib64/
+lrwxrwxrwx   1 root root   10 May 31 15:42 libx32 -> usr/libx32/
+drwxr-xr-x   2 root root 4096 May 31 15:42 media/
+drwxr-xr-x   2 root root 4096 May 31 15:42 mnt/
+drwxr-xr-x   2 root root 4096 May 31 15:42 opt/
+dr-xr-xr-x 307 root root    0 Jul  5 21:26 proc/
+drwx------   2 root root 4096 May 31 15:45 root/
+drwxr-xr-x   5 root root 4096 May 31 15:45 run/
+lrwxrwxrwx   1 root root    8 May 31 15:42 sbin -> usr/sbin/
+drwxr-xr-x   2 root root 4096 May 31 15:42 srv/
+dr-xr-xr-x  13 root root    0 Jul  5 21:26 sys/
+drwxrwxrwt   2 root root 4096 May 31 15:45 tmp/
+drwxr-xr-x  14 root root 4096 May 31 15:42 usr/
+drwxr-xr-x  11 root root 4096 May 31 15:45 var/
+
+exit
+
+
+*changed file_test.py*
+
+
+docker build . -t hello_name
+
+docker images
+REPOSITORY        TAG       IMAGE ID       CREATED              SIZE
+hello_name        latest    1a42f3a6d8bd   About a minute ago   459MB
+homework_docker   latest    1383cbf57ba6   3 hours ago          459MB
+ubuntu            latest    27941809078c   4 weeks ago          77.8MB
+ubuntu            20.04     20fffa419e3a   4 weeks ago          72.8MB
+hello-world       latest    feb5d9fea6a5   9 months ago         13.3kB
+
+docker run hello_name
+
+docker ps
+CONTAINER ID   IMAGE        COMMAND                  CREATED          STATUS          PORTS     NAMES
+1dd25726dc9e   hello_name   "/bin/sh -c 'FLASK_A…"   26 seconds ago   Up 25 seconds             admiring_cerf   //what a name 0_o
+
+docker inspect admiring_cerf
+[
+    {
+        "Id": "1dd25726dc9e1ab6cad339d2e8e59e5ed3505a84ab7ec92275c15f9579455e11",
+        "Created": "2022-07-05T22:11:12.848520995Z",
+        "Path": "/bin/sh",
+        "Args": [
+            "-c",
+            "FLASK_APP=/app/file_test.py flask run --host=0.0.0.0 --port=8080"
+        ],
+        "State": {
+            "Status": "running",
+            "Running": true,
+            "Paused": false,
+            "Restarting": false,
+            "OOMKilled": false,
+            "Dead": false,
+            "Pid": 18843,
+            "ExitCode": 0,
+            "Error": "",
+            "StartedAt": "2022-07-05T22:11:13.428809156Z",
+            "FinishedAt": "0001-01-01T00:00:00Z"
+        },
+        "Image": "sha256:1a42f3a6d8bd7f0df7832a71e2e28a1b57110ef927f1f1e2612293a77a802e06",
+        "ResolvConfPath": "/var/snap/docker/common/var-lib-docker/containers/1dd25726dc9e1ab6cad339d2e8e59e5ed3505a84ab7ec92275c15f9579455e11/resolv.conf",
+        "HostnamePath": "/var/snap/docker/common/var-lib-docker/containers/1dd25726dc9e1ab6cad339d2e8e59e5ed3505a84ab7ec92275c15f9579455e11/hostname",
+        "HostsPath": "/var/snap/docker/common/var-lib-docker/containers/1dd25726dc9e1ab6cad339d2e8e59e5ed3505a84ab7ec92275c15f9579455e11/hosts",
+        "LogPath": "/var/snap/docker/common/var-lib-docker/containers/1dd25726dc9e1ab6cad339d2e8e59e5ed3505a84ab7ec92275c15f9579455e11/1dd25726dc9e1ab6cad339d2e8e59e5ed3505a84ab7ec92275c15f9579455e11-json.log",
+        "Name": "/admiring_cerf",
+        "RestartCount": 0,
+        "Driver": "overlay2",
+        "Platform": "linux",
+        "MountLabel": "",
+        "ProcessLabel": "",
+        "AppArmorProfile": "docker-default",
+        "ExecIDs": null,
+        "HostConfig": {
+            "Binds": null,
+            "ContainerIDFile": "",
+            "LogConfig": {
+                "Type": "json-file",
+                "Config": {}
+            },
+            "NetworkMode": "default",
+            "PortBindings": {},
+            "RestartPolicy": {
+                "Name": "no",
+                "MaximumRetryCount": 0
+            },
+            "AutoRemove": false,
+            "VolumeDriver": "",
+            "VolumesFrom": null,
+            "CapAdd": null,
+            "CapDrop": null,
+            "CgroupnsMode": "host",
+            "Dns": [],
+            "DnsOptions": [],
+            "DnsSearch": [],
+            "ExtraHosts": null,
+            "GroupAdd": null,
+            "IpcMode": "private",
+            "Cgroup": "",
+            "Links": null,
+            "OomScoreAdj": 0,
+            "PidMode": "",
+            "Privileged": false,
+            "PublishAllPorts": false,
+            "ReadonlyRootfs": false,
+            "SecurityOpt": null,
+            "UTSMode": "",
+            "UsernsMode": "",
+            "ShmSize": 67108864,
+            "Runtime": "runc",
+            "ConsoleSize": [
+                0,
+                0
+            ],
+            "Isolation": "",
+            "CpuShares": 0,
+            "Memory": 0,
+            "NanoCpus": 0,
+            "CgroupParent": "",
+            "BlkioWeight": 0,
+            "BlkioWeightDevice": [],
+            "BlkioDeviceReadBps": null,
+            "BlkioDeviceWriteBps": null,
+            "BlkioDeviceReadIOps": null,
+            "BlkioDeviceWriteIOps": null,
+            "CpuPeriod": 0,
+            "CpuQuota": 0,
+            "CpuRealtimePeriod": 0,
+            "CpuRealtimeRuntime": 0,
+            "CpusetCpus": "",
+            "CpusetMems": "",
+            "Devices": [],
+            "DeviceCgroupRules": null,
+            "DeviceRequests": null,
+            "KernelMemory": 0,
+            "KernelMemoryTCP": 0,
+            "MemoryReservation": 0,
+            "MemorySwap": 0,
+            "MemorySwappiness": null,
+            "OomKillDisable": false,
+            "PidsLimit": null,
+            "Ulimits": null,
+            "CpuCount": 0,
+            "CpuPercent": 0,
+            "IOMaximumIOps": 0,
+            "IOMaximumBandwidth": 0,
+            "MaskedPaths": [
+                "/proc/asound",
+                "/proc/acpi",
+                "/proc/kcore",
+                "/proc/keys",
+                "/proc/latency_stats",
+                "/proc/timer_list",
+                "/proc/timer_stats",
+                "/proc/sched_debug",
+                "/proc/scsi",
+                "/sys/firmware"
+            ],
+            "ReadonlyPaths": [
+                "/proc/bus",
+                "/proc/fs",
+                "/proc/irq",
+                "/proc/sys",
+                "/proc/sysrq-trigger"
+            ]
+        },
+        "GraphDriver": {
+            "Data": {
+                "LowerDir": "/var/snap/docker/common/var-lib-docker/overlay2/b11d35c103a8fc4e9ca827db2b6bb3ea1c90c4ceac746b2c974a2581891fd9ba-init/diff:/var/snap/docker/common/var-lib-docker/overlay2/42d5dd0c5628594332c8059c76c9a570f72cdfa1cfc8ce6590c9d8057fe8a5f6/diff:/var/snap/docker/common/var-lib-docker/overlay2/2127a03c0d973e6679379504db411c071af3252bc599b6470c447f6731435ad5/diff:/var/snap/docker/common/var-lib-docker/overlay2/d60ab62aabb06540825fd5177811a80bb1bd1b155d371cd44a6edae70af2ab7a/diff:/var/snap/docker/common/var-lib-docker/overlay2/c519fbe11c4bac13d8dcca582e186efe846f358a590f9ff4f4a6727f152f0b51/diff",
+                "MergedDir": "/var/snap/docker/common/var-lib-docker/overlay2/b11d35c103a8fc4e9ca827db2b6bb3ea1c90c4ceac746b2c974a2581891fd9ba/merged",
+                "UpperDir": "/var/snap/docker/common/var-lib-docker/overlay2/b11d35c103a8fc4e9ca827db2b6bb3ea1c90c4ceac746b2c974a2581891fd9ba/diff",
+                "WorkDir": "/var/snap/docker/common/var-lib-docker/overlay2/b11d35c103a8fc4e9ca827db2b6bb3ea1c90c4ceac746b2c974a2581891fd9ba/work"
+            },
+            "Name": "overlay2"
+        },
+        "Mounts": [],
+        "Config": {
+            "Hostname": "1dd25726dc9e",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": true,
+            "AttachStderr": true,
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+            ],
+            "Cmd": null,
+            "Image": "hello_name",
+            "Volumes": null,
+            "WorkingDir": "",
+            "Entrypoint": [
+                "/bin/sh",
+                "-c",
+                "FLASK_APP=/app/file_test.py flask run --host=0.0.0.0 --port=8080"
+            ],
+            "OnBuild": null,
+            "Labels": {}
+        },
+        "NetworkSettings": {
+            "Bridge": "",
+            "SandboxID": "936dbb652b2944c42e66a27cf0d98fd0742523b2b0c3ea1918e70eee32d9eed9",
+            "HairpinMode": false,
+            "LinkLocalIPv6Address": "",
+            "LinkLocalIPv6PrefixLen": 0,
+            "Ports": {},
+            "SandboxKey": "/run/snap.docker/netns/936dbb652b29",
+            "SecondaryIPAddresses": null,
+            "SecondaryIPv6Addresses": null,
+            "EndpointID": "cacfca362647b29caaf22c1f24f1d5fb996d48624b6f6cd5acc65b4e752bd176",
+            "Gateway": "172.17.0.1",
+            "GlobalIPv6Address": "",
+            "GlobalIPv6PrefixLen": 0,
+            "IPAddress": "172.17.0.2",
+            "IPPrefixLen": 16,
+            "IPv6Gateway": "",
+            "MacAddress": "02:42:ac:11:00:02",
+            "Networks": {
+                "bridge": {
+                    "IPAMConfig": null,
+                    "Links": null,
+                    "Aliases": null,
+                    "NetworkID": "1d8430834250bbd116f9a3010c666d5a722d97f2271ed6523e99a4f480111b01",
+                    "EndpointID": "cacfca362647b29caaf22c1f24f1d5fb996d48624b6f6cd5acc65b4e752bd176",
+                    "Gateway": "172.17.0.1",
+                    "IPAddress": "172.17.0.2",
+                    "IPPrefixLen": 16,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "MacAddress": "02:42:ac:11:00:02",
+                    "DriverOpts": null
+                }
+            }
+        }
+    }
+]
+
+docker logs admiring_cerf
+ * Serving Flask app '/app/file_test.py' (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on all addresses (0.0.0.0)
+   WARNING: This is a development server. Do not use it in a production deployment.
+ * Running on http://127.0.0.1:8080
+ * Running on http://172.17.0.2:8080 (Press CTRL+C to quit)
+
+docker kill admiring_cerf
+admiring_cerf
+
+
+*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*
+
+
+docker run -it --name my_story ubuntu
+echo "Docker is so awesomoooooooo!" > story.txt
+apt-get update && apt-get install -y cowsay
+cat story.txt|/usr/games/cowsay
+ ______________________________
+< Docker is so awesomoooooooo! >
+ ------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+ls
+bin  boot  dev  etc  home  lib  lib32  lib64  libx32  media  mnt  opt  proc  root  run  sbin  srv  story.txt  sys  tmp  usr  var
+
+
+*another terminal*
+docker run -it --name my_story_2 ubuntu
+ls
+bin  boot  dev  etc  home  lib  lib32  lib64  libx32  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+
+
+
+docker kill $(docker ps -q)
