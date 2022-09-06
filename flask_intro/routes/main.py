@@ -7,7 +7,7 @@ def hello_world():
     return render_template("index.html", var="Gigity")
 
 
-@app.route("/add/<first>/<second>")
-def adding(first, second):
-    sum = int(first) + int(second)
+@app.route("/add/<int:first_number>/<int:second_number>")
+def adding(first_number, second_number):
+    sum = int(first_number) + int(second_number)
     return render_template("index.html", var=sum)
