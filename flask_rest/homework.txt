@@ -1,0 +1,18 @@
+Flask&REST Homework
+
+Refactor update_by_email() method in UserDB class to work properly
+Implement Update User API (write code for PUT endpoint)
+Create new module(Blueprint) with books/products/orders etc whatever you want and connect it to the main Flask application
+Add checks for Create/Update User API. Return 400 status code in there is any validation error.
+
+
+Advanced:
+
+Try to handle case when user want to send request for API that does not exist.
+Example. There are API for User and Book:
+
+/user
+
+/book
+
+if someone call url /test or any other that does not exist, return 404 status code and some message.
