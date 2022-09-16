@@ -1,0 +1,6 @@
+Create new project
+Create 2 modules: Authors and Books. 
+Create migration to create 2 db tables: Authors and Books. Add any fields you want
+Create serializers and write simple CRUD API for each module.
+Make new migration and create many to many relation between Authors and Books.
+Update API, models and serializers.
